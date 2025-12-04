@@ -1,0 +1,187 @@
+# ========================================
+#         PowerAuth Configuration
+# ========================================
+# Secure authentication plugin for Minecraft 1.21.4
+# Supports both premium (Mojang) and offline authentication
+
+# ========================================
+#           General Settings
+# ========================================
+general:
+  # Plugin language (future feature)
+  language: "en"
+  
+  # Enable debug logging
+  debug: false
+  
+  # Save player data on server shutdown
+  save-on-shutdown: true
+
+# ========================================
+#        Authentication Settings
+# ========================================
+authentication:
+  # Premium (Mojang) authentication settings
+  premium:
+    # Enable premium authentication
+    enabled: true
+    
+    # Timeout for premium check (seconds)
+    check-timeout: 3
+    
+    # Timeout for Mojang session verification (seconds)
+    session-timeout: 5
+    
+    # Auto-login premium players (skip commands)
+    auto-login: true
+  
+  # Offline (cracked) authentication settings
+  offline:
+    # Enable offline authentication
+    enabled: true
+    
+    # Minimum password length
+    min-password-length: 6
+    
+    # Maximum password length
+    max-password-length: 32
+    
+    # Enable IP-based auto-login
+    ip-auto-login: true
+    
+    # Session timeout (minutes, 0 = never expire)
+    session-timeout: 0
+    
+    # Force re-login after server restart
+    force-login-after-restart: false
+
+# ========================================
+#          Security Settings
+# ========================================
+security:
+  # Maximum login attempts before temporary ban
+  max-login-attempts: 3
+  
+  # Ban duration after max attempts (seconds)
+  ban-duration: 300
+  
+  # Prevent duplicate usernames (case-insensitive)
+  prevent-duplicate-names: true
+  
+  # Allowed commands while not authenticated
+  allowed-commands:
+    - "/register"
+    - "/login"
+    - "/help"
+  
+  # Kick player after timeout (seconds, 0 = disabled)
+  login-timeout: 60
+
+# ========================================
+#           Limbo World
+# ========================================
+limbo:
+  # Enable limbo world feature
+  enabled: true
+  
+  # Name of the limbo world
+  world-name: "limbo"
+  
+  # Auto-create limbo world if it doesn't exist
+  auto-create: true
+  
+  # Spawn location in limbo world
+  spawn-location:
+    x: 0.5
+    y: 64.0
+    z: 0.5
+    yaw: 0.0
+    pitch: 0.0
+  
+  # Where to teleport players after successful login
+  # Options: spawn, last-location, bed
+  after-login:
+    teleport-to: "spawn"
+  
+  # Limbo world settings
+  world-settings:
+    # World difficulty
+    difficulty: "PEACEFUL"
+    
+    # Enable PvP in limbo
+    pvp: false
+    
+    # Enable weather
+    weather: false
+    
+    # Time (0-24000, 6000 = noon)
+    time: 6000
+
+# ========================================
+#        Custom Messages
+# ========================================
+messages:
+  # Prefix for all plugin messages
+  prefix: "&8[&6PowerAuth&8]&r "
+  
+  # Join messages
+  join:
+    please-register: "&eWelcome! Please register using &6/register <password> <password>"
+    please-login: "&eWelcome back! Please login using &6/login <password>"
+    auto-login-ip: "&aAuto-logged in via IP!"
+    auto-login-premium: "&aAuto-logged in as premium player!"
+  
+  # Success messages
+  success:
+    registered: "&aSuccessfully registered and logged in!"
+    logged-in: "&aSuccessfully logged in!"
+  
+  # Error messages
+  error:
+    already-logged-in: "&cYou are already logged in!"
+    already-registered: "&cYou are already registered! Use /login."
+    not-registered: "&cYou are not registered! Use /register."
+    passwords-not-match: "&cPasswords do not match!"
+    password-too-short: "&cPassword must be at least {min} characters long!"
+    password-too-long: "&cPassword must be at most {max} characters long!"
+    incorrect-password: "&cIncorrect password!"
+    too-many-attempts: "&cToo many failed attempts! Temporarily banned for {duration} seconds."
+    login-timeout: "&cLogin timeout! Please reconnect."
+    must-login-to-chat: "&cYou must be logged in to chat!"
+    must-login-to-command: "&cYou must be logged in to use commands!"
+  
+  # Usage messages
+  usage:
+    register: "&cUsage: /register <password> <password>"
+    login: "&cUsage: /login <password>"
+
+# ========================================
+#        Database Settings
+# ========================================
+database:
+  # Database type (currently only SQLite supported)
+  type: "sqlite"
+  
+  # SQLite settings
+  sqlite:
+    # Database file name
+    file: "database.db"
+  
+  # Auto-save interval (seconds, 0 = disabled)
+  auto-save-interval: 300
+
+# ========================================
+#      Advanced Settings
+# ========================================
+advanced:
+  # Use async operations for database queries
+  async-database: true
+  
+  # Thread pool size for async operations
+  thread-pool-size: 2
+  
+  # Cache player data in memory
+  cache-player-data: true
+  
+  # Cache size (number of players)
+  cache-size: 100
